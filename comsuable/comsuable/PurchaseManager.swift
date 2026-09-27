@@ -33,8 +33,8 @@ enum PurchaseFeedback: Equatable, Identifiable {
 
     var message: String {
         switch self {
-        case .restored: "Home Passport Pro is active on this device."
-        case .noPurchasesFound: "We couldn't find an active Home Passport Pro purchase for this Apple Account."
+        case .restored: "HomeParts Pro is active on this device."
+        case .noPurchasesFound: "We couldn't find an active HomeParts Pro purchase for this Apple Account."
         case .failed(let message): message
         }
     }

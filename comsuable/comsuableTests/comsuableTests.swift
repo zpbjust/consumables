@@ -496,6 +496,16 @@ struct comsuableTests {
         ))
     }
 
+    @Test func purchaseConfigurationMatchesStoreSetup() {
+        #expect(PurchaseConfiguration.entitlementIdentifier == "home_replacements_pro")
+        #expect(PurchaseConfiguration.lifetimeProductIdentifier == "com.fuyao.comsuable.pro.lifetime")
+        #expect(PurchaseConfiguration.proProductIdentifiers == [
+            PurchaseConfiguration.lifetimeProductIdentifier
+        ])
+        #expect(PurchaseConfiguration.preferredOfferingIdentifier == "default")
+        #expect(PurchaseConfiguration.isReady)
+    }
+
     @Test func unconfiguredPurchasesLeaveEveryFeatureAvailableForTesting() {
         #expect(PremiumAccessPolicy.canCreateItem(
             existingItemCount: 100, isPro: false, purchasesConfigured: false

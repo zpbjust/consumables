@@ -15,7 +15,7 @@ struct comsuableApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomePartsRootView()
                 .environmentObject(store)
                 .environmentObject(purchaseManager)
                 .task { purchaseManager.configureIfNeeded() }

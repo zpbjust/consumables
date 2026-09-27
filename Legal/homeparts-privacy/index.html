@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#0a6e66">
+  <meta name="description" content="Privacy Policy for the HomeParts app.">
+  <title>HomeParts Privacy Policy</title>
+  <link rel="canonical" href="https://doudousoftware.com/homeparts/privacy/">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230a6e66'/%3E%3Cpath d='M14 31 32 16l18 15v18H38V36H26v13H14Z' fill='%23e0f2e8'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --ink: #172b33;
+      --muted: #667a7d;
+      --teal: #0a6e66;
+      --teal-dark: #07574f;
+      --mint: #e0f2e8;
+      --line: #dbe6de;
+      --surface: #ffffff;
+      --canvas: #f8faf7;
+      --amber: #e28f3d;
+      --shadow: 0 18px 50px rgba(8, 50, 41, .08);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 92% 0%, rgba(98, 193, 151, .24), transparent 30rem),
+        var(--canvas);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.68;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--teal); text-underline-offset: 3px; }
+    a:hover { color: var(--teal-dark); }
+    .shell { width: min(100% - 32px, 940px); margin: 0 auto; }
+    header { padding: 28px 0 18px; }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      color: var(--teal-dark);
+      font-size: 1.05rem;
+      font-weight: 760;
+      letter-spacing: -.01em;
+    }
+
+    .mark {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      color: white;
+      background: var(--teal);
+      font-size: 18px;
+      font-weight: 850;
+    }
+
+    main { padding: 12px 0 72px; }
+
+    .intro {
+      padding: clamp(28px, 6vw, 54px);
+      border: 1px solid rgba(255, 255, 255, .9);
+      border-radius: 30px;
+      background: rgba(255, 255, 255, .92);
+      box-shadow: var(--shadow);
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--teal);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 720px;
+      margin: 0;
+      font-size: clamp(2.3rem, 8vw, 4.4rem);
+      line-height: .99;
+      letter-spacing: -.052em;
+    }
+
+    .lede {
+      max-width: 720px;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+    }
+
+    .updated {
+      display: inline-block;
+      margin-top: 24px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      color: var(--teal-dark);
+      background: var(--mint);
+      font-size: .86rem;
+      font-weight: 700;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin: 22px 0;
+    }
+
+    .summary article {
+      min-height: 158px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--surface);
+    }
+
+    .summary strong { display: block; margin-bottom: 8px; font-size: 1.04rem; }
+    .summary p { margin: 0; color: var(--muted); font-size: .94rem; line-height: 1.55; }
+
+    .policy {
+      padding: clamp(24px, 5vw, 48px);
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: var(--surface);
+    }
+
+    section + section { margin-top: 36px; padding-top: 36px; border-top: 1px solid var(--line); }
+    h2 { margin: 0 0 12px; font-size: clamp(1.25rem, 3vw, 1.55rem); line-height: 1.25; letter-spacing: -.025em; }
+    h3 { margin: 22px 0 7px; font-size: 1.05rem; }
+    p { margin: 10px 0; }
+    ul { margin: 10px 0; padding-left: 22px; }
+    li + li { margin-top: 7px; }
+
+    .note {
+      margin-top: 16px;
+      padding: 17px 18px;
+      border-left: 4px solid var(--teal);
+      border-radius: 4px 14px 14px 4px;
+      background: var(--mint);
+    }
+
+    .contact { padding: 22px; border-radius: 18px; background: var(--teal-dark); color: #fff; }
+    .contact a { color: #fff; font-weight: 700; }
+    footer { padding: 22px 0 42px; color: var(--muted); text-align: center; font-size: .88rem; }
+
+    @media (max-width: 720px) {
+      .shell { width: min(100% - 22px, 940px); }
+      header { padding-top: 18px; }
+      .intro { border-radius: 24px; }
+      .summary { grid-template-columns: 1fr; }
+      .summary article { min-height: 0; }
+      .policy { border-radius: 22px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <header class="shell">
+    <div class="brand" aria-label="HomeParts">
+      <span class="mark" aria-hidden="true">HP</span>
+      <span>HomeParts</span>
+    </div>
+  </header>
+
+  <main class="shell">
+    <div class="intro">
+      <p class="eyebrow">Privacy Policy</p>
+      <h1>Your home records stay on your device.</h1>
+      <p class="lede">HomeParts is a local-first home maintenance app. This policy explains what the App stores on your device, how label recognition works, and what Apple and RevenueCat process when you make a purchase.</p>
+      <span class="updated">Effective September 27, 2026</span>
+    </div>
+
+    <div class="summary" aria-label="Privacy highlights">
+      <article>
+        <strong>Local home records</strong>
+        <p>Homes, rooms, item details, photos, schedules, shopping entries, and replacement history are stored on your device.</p>
+      </article>
+      <article>
+        <strong>On-device label recognition</strong>
+        <p>Apple Vision reads selected label photos on your device. The App does not upload photos or recognized text to our servers.</p>
+      </article>
+      <article>
+        <strong>No ads or tracking</strong>
+        <p>The App has no advertising SDK and does not sell personal information. Apple and RevenueCat handle purchase data.</p>
+      </article>
+    </div>
+
+    <article class="policy">
+      <section>
+        <h2>1. Scope</h2>
+        <p>This Privacy Policy applies to the HomeParts mobile application (“HomeParts,” the “App,” “we,” “us,” or “our”). By using the App, you acknowledge the practices described below.</p>
+      </section>
+
+      <section>
+        <h2>2. Information stored on your device</h2>
+        <p>The App lets you create and manage information such as:</p>
+        <ul>
+          <li>home and room names;</li>
+          <li>item names, categories, brands, model numbers, sizes, photos, and exact locations;</li>
+          <li>replacement schedules, reminder settings, last-replaced dates, and replacement history;</li>
+          <li>stock quantities, preferred stores, typical prices, product links, and notes;</li>
+          <li>shopping-list entries and purchase status; and</li>
+          <li>App preferences.</li>
+        </ul>
+        <p>This information is stored in the App’s local storage area on your device. We do not operate an account system or cloud service that receives these home records, and RevenueCat does not receive them.</p>
+      </section>
+
+      <section>
+        <h2>3. Photos, camera access, and label recognition</h2>
+        <p>You can choose a product photo with Apple’s system photo picker or capture one with the camera. The App receives only the image you select or capture. It creates a compressed copy for local storage.</p>
+        <p>If you use label recognition, Apple Vision processes the image on your device to find text. The App may suggest a name, brand, model number, size, and category from that text. You review the suggestions before applying them.</p>
+        <p>We do not upload product photos or recognized label text to our servers or to RevenueCat.</p>
+      </section>
+
+      <section>
+        <h2>4. Notifications</h2>
+        <p>If you enable reminders, the App asks iOS for notification permission and schedules local notifications for items with a replacement schedule. These reminders are created and delivered by your device. We do not operate a push-notification server for the App.</p>
+        <p>You can change notification permission in iOS Settings and change reminder timing inside the App.</p>
+      </section>
+
+      <section>
+        <h2>5. Exporting, importing, and sharing data</h2>
+        <p>The App can create a backup containing your saved records and photos, and it can export replacement history as a CSV file. Export happens only when you choose it.</p>
+        <p>When you share or save an exported file, the destination you select, such as Files, Mail, or another app, may process that file under its own privacy terms. Keep exported files in a location you trust. Imported backups are read from the file you select and then stored locally in the App.</p>
+      </section>
+
+      <section>
+        <h2>6. Purchases and HomeParts Pro</h2>
+        <p>Payments are processed by Apple through the App Store. We do not receive or store your full payment-card details.</p>
+        <p>We use RevenueCat to display the Lifetime Unlock product, verify the purchase, manage entitlement status, and restore Pro access. For these purposes, RevenueCat may process:</p>
+        <ul>
+          <li>a randomly generated App User ID that is not based on your name or email address;</li>
+          <li>purchase history, product identifiers, transaction receipts, and entitlement status; and</li>
+          <li>limited App and device technical information, such as App version, operating system, device type, locale, currency, and network information including IP address.</li>
+        </ul>
+        <p>We use this information only to provide and support purchases, maintain access to paid features, prevent purchase errors or abuse, and answer purchase-related support requests. We do not use it for advertising or cross-app tracking.</p>
+        <p>Apple and RevenueCat process information under their own privacy terms. Review the <a href="https://www.apple.com/legal/privacy/" rel="noopener noreferrer">Apple Privacy Policy</a> and the <a href="https://www.revenuecat.com/privacy/" rel="noopener noreferrer">RevenueCat Privacy Policy</a> for details.</p>
+      </section>
+
+      <section>
+        <h2>7. How we use information</h2>
+        <p>Information handled by the App is used to:</p>
+        <ul>
+          <li>save home, item, schedule, inventory, shopping, and replacement-history records;</li>
+          <li>recognize text from a product label on your device;</li>
+          <li>schedule local replacement reminders;</li>
+          <li>create backups and history exports when you request them;</li>
+          <li>complete, verify, and restore in-app purchases; and</li>
+          <li>answer support or privacy requests that you send to us.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>8. Sharing and disclosure</h2>
+        <p>We do not sell personal information. We do not share personal information for targeted or cross-context behavioral advertising.</p>
+        <p>Purchase-related information is processed by Apple and RevenueCat as described above. We may also disclose information when reasonably necessary to comply with law, enforce applicable terms, protect users, or protect the rights and security of the App.</p>
+      </section>
+
+      <section>
+        <h2>9. Retention and deletion</h2>
+        <h3>Local App information</h3>
+        <p>Local records remain on your device until you remove them with available App controls, replace them by importing a backup, or delete the App. Deleting the App removes information stored in its application container, subject to device backups managed by Apple.</p>
+        <h3>Purchase information</h3>
+        <p>Apple and RevenueCat may retain purchase and transaction information for the periods needed to provide purchase history, restore entitlements, meet legal or accounting obligations, prevent fraud, and resolve disputes.</p>
+        <p>A pseudonymous App User ID stored in the iOS Keychain may remain on the device after a normal uninstall. This helps the App recover purchase access after reinstallation. StoreKit also reads verified entitlements associated with the Apple Account on the device.</p>
+      </section>
+
+      <section>
+        <h2>10. Security</h2>
+        <p>The App uses iOS protections including the App sandbox and Keychain. It limits external processing to services needed for purchases. No storage or transmission method is completely secure, but we take reasonable steps appropriate to the information involved.</p>
+      </section>
+
+      <section>
+        <h2>11. Children’s privacy</h2>
+        <p>HomeParts is a household organization tool and is not directed to children under 13. We do not knowingly collect personal information directly from children. If you believe a child has provided personal information in connection with the App, contact us so we can assist.</p>
+      </section>
+
+      <section>
+        <h2>12. International processing</h2>
+        <p>RevenueCat and its service providers may process purchase-related information in the United States and other countries where they operate. Those countries may have data-protection rules that differ from those in your country. Applicable safeguards are used where required.</p>
+      </section>
+
+      <section>
+        <h2>13. Your privacy choices and rights</h2>
+        <p>Depending on where you live, you may have rights to request access, correction, deletion, restriction, or a copy of personal information processed in connection with the App, or to object to certain processing. You may also have the right to complain to your local data-protection authority.</p>
+        <p>Because most App data remains only on your device, we generally cannot access or retrieve that local information for you. You control it through the App, your device, your exported files, and your device backups. Contact us for purchase-related privacy requests.</p>
+      </section>
+
+      <section>
+        <h2>14. Changes to this policy</h2>
+        <p>We may update this Privacy Policy when the App’s features, service providers, or legal obligations change. We will post the revised policy on this page and update the effective date. We will communicate material changes through the App or another appropriate method when required.</p>
+      </section>
+
+      <section>
+        <h2>15. Contact us</h2>
+        <div class="contact">
+          <p>If you have a privacy question or want to exercise a privacy right, email the HomeParts developer at <a href="mailto:zhoupeibin02@163.com">zhoupeibin02@163.com</a>.</p>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="shell">© 2026 HomeParts. Local-first home maintenance records.</footer>
+</body>
+</html>

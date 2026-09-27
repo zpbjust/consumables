@@ -36,7 +36,7 @@ struct SettingsView: View {
 
                     settingsSection("Support") {
                         Button { selectedDestination = .howItWorks } label: {
-                            settingsRow("How Home Passport works", detail: "Items, schedules, and shopping")
+                            settingsRow("How HomeParts works", detail: "Items, schedules, and shopping")
                         }
                         .buttonStyle(.plain)
                         Divider()
@@ -79,7 +79,7 @@ struct SettingsView: View {
                     .scaledToFit()
                     .frame(width: 56, height: 56)
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("Home Passport Pro")
+                    Text("HomeParts Pro")
                         .font(.headline)
                         .foregroundStyle(PassportTheme.ink)
                     Text(membershipDetail)
@@ -133,8 +133,8 @@ struct SettingsView: View {
             return "All features are available while purchases are being configured"
         }
         return purchaseManager.isPro
-            ? "Lifetime unlock active"
-            : "Unlimited items and multiple homes"
+            ? "Lifetime access · Never expires"
+            : "One-time purchase · No subscription"
     }
 
     private var appVersion: String {
@@ -224,7 +224,7 @@ private struct NotificationSettingsView: View {
                         openURL(settingsURL)
                     }
                 case .allowed:
-                    Text("Home Passport can deliver reminders for items that have notifications enabled.")
+                    Text("HomeParts can deliver reminders for items that have notifications enabled.")
                         .font(.caption)
                         .foregroundStyle(PassportTheme.muted)
                 case nil:
@@ -245,7 +245,7 @@ private struct NotificationSettingsView: View {
             guard phase == .active else { return }
             Task { await refreshPermissionState() }
         }
-        .alert("Home Passport", isPresented: Binding(
+        .alert("HomeParts", isPresented: Binding(
             get: { alertMessage != nil },
             set: { if !$0 { alertMessage = nil } }
         )) {
@@ -330,7 +330,7 @@ private struct DataSettingsView: View {
         } message: {
             Text("Current homes, items, shopping entries, and photos will be replaced by the backup.")
         }
-        .alert("Home Passport", isPresented: Binding(
+        .alert("HomeParts", isPresented: Binding(
             get: { alertMessage != nil },
             set: { if !$0 { alertMessage = nil } }
         )) {
@@ -398,7 +398,7 @@ private struct AboutHomePassportView: View {
                 LabeledContent("Storage", value: "On device")
             }
             Section {
-                Text("Home Passport keeps the exact replacement details, schedule, and history for the everyday parts your home depends on.")
+                Text("HomeParts keeps the exact replacement details, schedule, and history for the everyday parts your home depends on.")
             }
         }
         .navigationTitle("About")

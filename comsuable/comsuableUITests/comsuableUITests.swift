@@ -54,7 +54,7 @@ final class comsuableUITests: XCTestCase {
         XCTAssertTrue(save.isEnabled)
         save.tap()
 
-        XCTAssertTrue(app.staticTexts["Home Passport"].exists)
+        XCTAssertTrue(app.staticTexts["HomeParts"].exists)
         XCTAssertFalse(app.textFields["homeSearchField"].exists)
         XCTAssertEqual(app.buttons.matching(identifier: "Add item").count, 1)
         XCTAssertFalse(app.staticTexts["Quick actions"].exists)
@@ -65,10 +65,13 @@ final class comsuableUITests: XCTestCase {
         let homeCard = app.buttons["homeCard-My home"]
         XCTAssertTrue(homeCard.waitForExistence(timeout: 5))
         homeCard.tap()
+        XCTAssertFalse(app.buttons["Items"].exists)
         app.buttons["All items"].tap()
         XCTAssertTrue(app.staticTexts["Kitchen water filter"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts["GXRLQK"].exists)
 
+        app.buttons["Close"].tap()
+        XCTAssertTrue(app.buttons["Items"].waitForExistence(timeout: 3))
         app.buttons["Items"].tap()
         let stickyFilters = app.descendants(matching: .any)["itemsStickyFilters"]
         XCTAssertTrue(stickyFilters.waitForExistence(timeout: 3))

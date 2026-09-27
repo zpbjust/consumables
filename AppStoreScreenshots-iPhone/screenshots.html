@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1242, initial-scale=1">
+<title>HomeParts App Store Screenshots</title>
+<style>
+  :root {
+    --canvas:#f8faf7; --ink:#172b33; --muted:#667a7d; --teal:#0a6e66;
+    --teal-dark:#07574f; --pale:#e0f2e8; --line:#dbe6de; --amber:#e28f3d;
+  }
+  * { box-sizing:border-box; }
+  html, body { margin:0; width:1242px; height:2688px; overflow:hidden; }
+  body { font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Arial,sans-serif; background:var(--canvas); color:var(--ink); }
+  .poster { display:none; position:relative; width:1242px; height:2688px; overflow:hidden; background:
+    radial-gradient(circle at 95% 7%, rgba(98,193,151,.22), transparent 25%),
+    radial-gradient(circle at 4% 88%, rgba(75,162,139,.13), transparent 28%),
+    linear-gradient(180deg,#fbfcf8 0%,#f4faf5 100%); }
+  .poster.active { display:block; }
+  .decor { position:absolute; inset:0; opacity:.55; pointer-events:none; }
+  .decor:before,.decor:after { content:""; position:absolute; border:3px solid rgba(10,110,102,.10); border-radius:80px; transform:rotate(-12deg); }
+  .decor:before { width:640px; height:310px; right:-220px; top:350px; }
+  .decor:after { width:520px; height:250px; left:-250px; bottom:160px; }
+  .marketing { position:relative; z-index:2; text-align:center; padding:105px 72px 0; }
+  .eyebrow { color:var(--teal); text-transform:uppercase; letter-spacing:6px; font-size:25px; font-weight:800; margin-bottom:24px; }
+  .marketing h1 { margin:0 auto; max-width:1100px; font-size:91px; line-height:.98; letter-spacing:-4.8px; font-weight:850; }
+  .marketing p { margin:29px auto 0; max-width:1040px; font-size:36px; line-height:1.25; color:#385257; font-weight:520; }
+  .phone { position:absolute; z-index:3; width:1012px; height:2012px; left:115px; top:625px; border-radius:132px; padding:22px; background:linear-gradient(145deg,#0b0d0d,#4a4f4d 48%,#050606); box-shadow:0 40px 80px rgba(18,55,46,.26), inset 0 0 0 5px #909895; }
+  .phone:before { content:""; position:absolute; width:246px; height:70px; border-radius:45px; background:#050505; top:45px; left:383px; z-index:20; }
+  .screen { position:relative; width:100%; height:100%; border-radius:111px; overflow:hidden; background:var(--canvas); border:2px solid #202423; }
+  .status { height:103px; padding:33px 66px 0; display:flex; align-items:flex-start; justify-content:space-between; font-weight:760; font-size:28px; background:var(--canvas); }
+  .status .signals { display:flex; gap:11px; align-items:center; font-size:23px; }
+  .app { position:absolute; inset:103px 0 0; padding:25px 48px 155px; overflow:hidden; background:var(--canvas); }
+  .app.full { padding-bottom:45px; }
+  .page-title { font-size:58px; line-height:1.02; letter-spacing:-2px; font-weight:830; margin:4px 0 15px; }
+  .subtitle { font-size:25px; color:var(--muted); margin-bottom:27px; }
+  .section-label { font-size:19px; letter-spacing:3px; text-transform:uppercase; font-weight:800; color:var(--muted); margin:25px 0 13px; }
+  .card { background:#fff; border:2px solid var(--line); border-radius:30px; padding:26px; box-shadow:0 11px 25px rgba(8,50,41,.045); }
+  .card + .card { margin-top:17px; }
+  .row { display:flex; align-items:center; gap:18px; }
+  .between { display:flex; align-items:center; justify-content:space-between; gap:18px; }
+  .grow { flex:1; min-width:0; }
+  .title { font-size:28px; line-height:1.12; font-weight:760; }
+  .body { font-size:22px; line-height:1.3; color:var(--muted); }
+  .small { font-size:19px; color:var(--muted); }
+  .teal { color:var(--teal); }
+  .amber { color:var(--amber); }
+  .pill { display:inline-flex; align-items:center; justify-content:center; border-radius:999px; padding:10px 16px; font-size:18px; line-height:1; font-weight:760; background:var(--pale); color:var(--teal-dark); }
+  .pill.warn { background:#fff0dd; color:#a95a18; }
+  .iconbox { flex:none; width:72px; height:72px; padding:14px; border-radius:22px; background:var(--pale); display:grid; place-items:center; }
+  .iconbox img { width:100%; height:100%; object-fit:contain; }
+  .thumb { flex:none; width:79px; height:79px; border-radius:23px; background:linear-gradient(145deg,#d5eee2,#edf8f1); display:grid; place-items:center; color:var(--teal); font-size:25px; font-weight:820; border:1px solid #d2e7db; }
+  .divider { height:1px; background:var(--line); margin:18px 0; }
+  .progress { height:10px; border-radius:10px; background:#d8ebe1; overflow:hidden; margin-top:15px; }
+  .progress span { display:block; height:100%; background:var(--teal); width:72%; border-radius:10px; }
+  .home-card { min-height:265px; display:flex; align-items:center; gap:25px; }
+  .home-art { width:235px; height:190px; padding:20px; background:var(--pale); border-radius:31px; display:grid; place-items:center; }
+  .home-art img { width:100%; height:100%; object-fit:contain; }
+  .open { margin-top:15px; color:var(--teal); font-weight:780; font-size:22px; }
+  .fab { position:absolute; right:48px; bottom:145px; z-index:5; height:72px; border-radius:40px; padding:0 31px; display:flex; align-items:center; background:var(--teal); color:white; font-size:22px; font-weight:780; box-shadow:0 14px 32px rgba(10,110,102,.3); }
+  .tabs { position:absolute; z-index:4; bottom:0; left:0; right:0; height:128px; background:rgba(255,255,255,.98); border-top:1px solid var(--line); display:flex; justify-content:space-around; padding-top:20px; }
+  .tab { width:19%; text-align:center; color:#77898a; font-size:17px; font-weight:650; }
+  .tab img { display:block; width:34px; height:34px; margin:0 auto 8px; }
+  .tab.active { color:var(--teal); }
+  .nav { height:67px; margin:-2px -5px 15px; display:grid; grid-template-columns:1fr 2fr 1fr; align-items:center; font-size:22px; color:var(--teal); }
+  .nav strong { color:var(--ink); text-align:center; font-size:25px; }
+  .nav .right { text-align:right; font-weight:700; }
+  .hero-scan { height:300px; display:flex; flex-direction:column; align-items:center; justify-content:center; background:linear-gradient(150deg,#e2f3eb,#f5faf6); border:2px dashed #b4d8c6; border-radius:32px; }
+  .hero-scan img { width:92px; height:92px; margin-bottom:14px; }
+  .primary { display:flex; align-items:center; justify-content:center; min-height:67px; border-radius:19px; background:var(--teal); color:white; font-size:24px; font-weight:780; }
+  .field { margin-top:17px; }
+  .field label { display:block; font-size:18px; color:var(--muted); margin:0 0 8px 4px; }
+  .input { min-height:66px; border:2px solid var(--line); border-radius:18px; background:white; padding:18px 20px; font-size:23px; }
+  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:15px; }
+  .detail-hero { text-align:center; padding:15px 0 24px; }
+  .detail-art { width:168px; height:168px; padding:31px; margin:0 auto 20px; border-radius:45px; background:var(--pale); }
+  .detail-art img { width:100%; height:100%; object-fit:contain; }
+  .detail-hero h2 { font-size:43px; margin:0 0 8px; }
+  .detail-hero p { font-size:23px; color:var(--muted); margin:0; }
+  .facts { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .fact { background:#fff; border:2px solid var(--line); border-radius:25px; padding:22px; }
+  .fact span { display:block; color:var(--muted); font-size:18px; margin-bottom:5px; }
+  .fact strong { font-size:23px; line-height:1.2; }
+  .schedule-top { display:flex; align-items:center; justify-content:space-between; }
+  .chips { display:flex; gap:11px; margin:18px 0 26px; }
+  .chip { border:2px solid var(--line); background:#fff; border-radius:28px; padding:14px 20px; font-size:19px; font-weight:720; }
+  .chip.active { color:white; background:var(--teal); border-color:var(--teal); }
+  .schedule-card { padding:22px; }
+  .due { text-align:right; font-size:18px; font-weight:720; color:var(--amber); }
+  .button-small { margin-top:17px; height:54px; display:flex; align-items:center; justify-content:center; border-radius:15px; background:var(--teal); color:white; font-size:20px; font-weight:750; }
+  .shopping-card { padding:24px; }
+  .actions { display:flex; gap:25px; margin-top:18px; color:var(--teal); font-weight:760; font-size:18px; }
+  .bottom-fade { position:absolute; left:0; right:0; bottom:126px; height:90px; background:linear-gradient(transparent,var(--canvas)); pointer-events:none; }
+</style>
+</head>
+<body>
+
+<section class="poster" id="home">
+  <div class="decor"></div>
+  <header class="marketing"><div class="eyebrow">Home maintenance, organized</div><h1>Know What Your Home Needs</h1><p>See what needs attention, then open each home room by room.</p></header>
+  <div class="phone"><div class="screen"><div class="status"><span>9:41</span><span class="signals">▮▮▮  Wi‑Fi  100%</span></div>
+    <main class="app">
+      <div class="page-title">HomeParts</div>
+      <div class="card">
+        <div class="row"><div class="iconbox"><img src="../comsuable/comsuable/Assets.xcassets/EditorPlan.imageset/EditorPlan.svg"></div><div class="grow"><div class="title">2 items need attention</div><div class="body">See what is overdue and what is coming up next.</div></div></div>
+        <div class="divider"></div>
+        <div class="row"><div class="thumb">AF</div><div class="grow"><div class="title" style="font-size:24px">Upstairs Air Filter</div><div class="small">16 × 25 × 1 · Ceiling return vent</div></div><div class="due">OVERDUE<br><span class="small">10 days</span></div></div>
+        <div class="divider"></div>
+        <div class="row"><div class="thumb">WF</div><div class="grow"><div class="title" style="font-size:24px">Fridge Water Filter</div><div class="small">EDR4RXD1 · Kitchen</div></div><div class="pill">IN 6 DAYS</div></div>
+      </div>
+      <div class="section-label">Homes <span style="float:right;letter-spacing:0;text-transform:none;font-weight:500">1 total</span></div>
+      <div class="card home-card"><div class="grow"><div class="title" style="font-size:33px">My home</div><div class="body" style="margin-top:9px">6 rooms · 8 items</div><div class="amber small" style="font-weight:760;margin-top:9px">2 need attention</div><div class="open">Open home</div></div><div class="home-art"><img src="../comsuable/comsuable/Assets.xcassets/WelcomeHome.imageset/WelcomeHome.svg"></div></div>
+      <div class="fab">Add item</div>
+    </main>
+    <div class="tabs">
+      <div class="tab active"><img src="../comsuable/comsuable/Assets.xcassets/TabHomeSelected.imageset/TabHomeSelected.svg">Home</div>
+      <div class="tab"><img src="../comsuable/comsuable/Assets.xcassets/TabItems.imageset/TabItems.svg">Items</div>
+      <div class="tab"><img src="../comsuable/comsuable/Assets.xcassets/TabSchedule.imageset/TabSchedule.svg">Schedule</div>
+      <div class="tab"><img src="../comsuable/comsuable/Assets.xcassets/TabShopping.imageset/TabShopping.svg">Shopping</div>
+      <div class="tab"><img src="../comsuable/comsuable/Assets.xcassets/TabSettings.imageset/TabSettings.svg">Settings</div>
+    </div>
+  </div></div>
+</section>
+
+<section class="poster" id="scan">
+  <div class="decor"></div>
+  <header class="marketing"><div class="eyebrow">Built-in label recognition</div><h1>Scan It. Save the Exact Match.</h1><p>Capture the model, size, and product details you will need later.</p></header>
+  <div class="phone"><div class="screen"><div class="status"><span>9:41</span><span class="signals">▮▮▮  Wi‑Fi  100%</span></div>
+    <main class="app full">
+      <div class="nav"><span>Cancel</span><strong>Add item</strong><span class="right">Save</span></div>
+      <div class="hero-scan"><img src="../comsuable/comsuable/Assets.xcassets/EditorScan.imageset/EditorScan.svg"><div class="title">Scan product label</div><div class="body" style="margin-top:7px">Recognize details from a clear photo</div></div>
+      <div class="primary" style="margin-top:17px">Choose a label photo</div>
+      <div class="small" style="text-align:center;margin:14px 15px 22px">Photo and recognized text stay on this device. Review every suggestion before applying it.</div>
+      <div class="card">
+        <div class="row"><div class="iconbox"><img src="../comsuable/comsuable/Assets.xcassets/EditorDetails.imageset/EditorDetails.svg"></div><div><div class="title">Item details</div><div class="body">The exact replacement you use</div></div></div>
+        <div class="field"><label>Name</label><div class="input">Upstairs Air Filter</div></div>
+        <div class="grid2"><div class="field"><label>Brand</label><div class="input">Filtrete</div></div><div class="field"><label>Model number</label><div class="input">MPR-1000</div></div></div>
+        <div class="field"><label>Size</label><div class="input">16 × 25 × 1</div></div>
+      </div>
+      <div class="card">
+        <div class="row"><div class="iconbox"><img src="../comsuable/comsuable/Assets.xcassets/EditorLocation.imageset/EditorLocation.svg"></div><div class="grow"><div class="title">Where it lives</div><div class="body">My home · Living room</div></div><span class="teal" style="font-weight:760">Choose</span></div>
+      </div>
+    </main>
+  </div></div>
+</section>
+
+<section class="poster" id="detail">
+  <div class="decor"></div>
+  <header class="marketing"><div class="eyebrow">Every detail, ready offline</div><h1>Never Buy the Wrong Part Again</h1><p>Keep the exact model, size, location, stock, and replacement plan together.</p></header>
+  <div class="phone"><div class="screen"><div class="status"><span>9:41</span><span class="signals">▮▮▮  Wi‑Fi  100%</span></div>
+    <main class="app full">
+      <div class="nav"><span>Close</span><strong>Item details</strong><span class="right">Edit</span></div>
+      <div class="detail-hero"><div class="detail-art"><img src="../comsuable/comsuable/Assets.xcassets/CategoryFilter.imageset/CategoryFilter.svg"></div><h2>Upstairs Air Filter</h2><p>Air &amp; HVAC filters</p></div>
+      <div class="facts"><div class="fact"><span>Brand</span><strong>Filtrete</strong></div><div class="fact"><span>Model</span><strong>MPR-1000</strong></div><div class="fact"><span>Size</span><strong>16 × 25 × 1</strong></div><div class="fact"><span>Stock at home</span><strong>1</strong></div></div>
+      <div class="section-label">What to buy</div>
+      <div class="card"><div class="between"><div><div class="title">Home Depot</div><div class="body">Typical price · $18.99</div></div><span class="pill">IN STOCK</span></div><div class="primary" style="margin-top:20px">Add to shopping list</div></div>
+      <div class="section-label">Location</div>
+      <div class="card"><div class="row"><div class="iconbox"><img src="../comsuable/comsuable/Assets.xcassets/EditorLocation.imageset/EditorLocation.svg"></div><div><div class="title">Living room</div><div class="body">Upstairs ceiling return vent</div></div></div></div>
+      <div class="section-label">Replacement schedule</div>
+      <div class="card"><div class="between"><div><div class="title">Every 90 days</div><div class="body">Last replaced · Jun 19, 2026</div></div><span class="pill warn">OVERDUE</span></div><div class="progress"><span style="width:100%"></span></div><div class="primary" style="margin-top:20px">Mark as replaced</div></div>
+    </main>
+  </div></div>
+</section>
+
+<section class="poster" id="schedule">
+  <div class="decor"></div>
+  <header class="marketing"><div class="eyebrow">A schedule that stays useful</div><h1>Replace It Before It Fails</h1><p>See overdue and upcoming maintenance, then record the change in one tap.</p></header>
+  <div class="phone"><div class="screen"><div class="status"><span>9:41</span><span class="signals">▮▮▮  Wi‑Fi  100%</span></div>
+    <main class="app">
+      <div class="page-title">Schedule</div>
+      <div class="card"><div class="between"><div><div class="section-label" style="margin:0 0 7px">Due date</div><div class="title">Any due date</div><div class="body">Filter by planned replacement date</div></div><span class="teal" style="font-size:22px;font-weight:760">Choose</span></div></div>
+      <div class="chips"><div class="chip active">All&nbsp; 4</div><div class="chip">Overdue&nbsp; 1</div><div class="chip">Coming up&nbsp; 2</div><div class="chip">Later&nbsp; 1</div></div>
+      <div class="section-label amber">Overdue</div>
+      <div class="card schedule-card"><div class="row"><div class="thumb">AF</div><div class="grow"><div class="title">Upstairs Air Filter</div><div class="body">Living room · Ceiling return vent</div></div><div class="due">10 DAYS<br>OVERDUE</div></div><div class="button-small">Mark as replaced</div></div>
+      <div class="section-label">Coming up</div>
+      <div class="card schedule-card"><div class="row"><div class="thumb">WF</div><div class="grow"><div class="title">Fridge Water Filter</div><div class="body">Kitchen · Refrigerator</div></div><span class="pill">IN 6 DAYS</span></div><div class="button-small">Mark as replaced</div></div>
+      <div class="card schedule-card"><div class="row"><div class="thumb">SB</div><div class="grow"><div class="title">Smoke Alarm Batteries</div><div class="body">Hallway · Upstairs alarm</div></div><span class="pill">IN 14 DAYS</span></div><div class="button-small">Mark as replaced</div></div>
+      <div class="bottom-fade"></div>
+    </main>
+    <div class="tabs">
+      <div class="tab"><img src="../comsuable/comsuable/Assets.xcassets/TabHome.imageset/TabHome.svg">Home</div>
+      <div class="tab"><img src="../comsuable/comsuable/Assets.xcassets/TabItems.imageset/TabItems.svg">Items</div>
+      <div class="tab active"><img src="../comsuable/comsuable/Assets.xcassets/TabScheduleSelected.imageset/TabScheduleSelected.svg">Schedule</div>
+      <div class="tab"><img src="../comsuable/comsuable/Assets.xcassets/TabShopping.imageset/TabShopping.svg">Shopping</div>
+      <div class="tab"><img src="../comsuable/comsuable/Assets.xcassets/TabSettings.imageset/TabSettings.svg">Settings</div>
+    </div>
+  </div></div>
+</section>
+
+<section class="poster" id="shopping">
+  <div class="decor"></div>
+  <header class="marketing"><div class="eyebrow">Your exact list, at the store</div><h1>Shop With Confidence</h1><p>Bring model numbers, sizes, quantities, and preferred stores with you.</p></header>
+  <div class="phone"><div class="screen"><div class="status"><span>9:41</span><span class="signals">▮▮▮  Wi‑Fi  100%</span></div>
+    <main class="app">
+      <div class="page-title">Shopping</div><div class="subtitle">The exact details, ready at the store.</div>
+      <div class="primary">Start shopping</div>
+      <div class="section-label">To buy · 3</div>
+      <div class="card shopping-card"><div class="row"><div class="thumb">AF</div><div class="grow"><div class="title">Upstairs Air Filter</div><div class="body">MPR-1000 · 16 × 25 × 1</div></div><span class="pill">TO BUY: 2</span></div><div class="body" style="margin-top:15px">Preferred store: Home Depot</div><div class="small" style="margin-top:6px">Stock at home: 1</div><div class="actions"><span>Bought · add to stock</span><span style="color:#c25d54">Remove</span></div></div>
+      <div class="card shopping-card"><div class="row"><div class="thumb">WF</div><div class="grow"><div class="title">Fridge Water Filter</div><div class="body">EDR4RXD1 · EveryDrop</div></div><span class="pill">TO BUY: 1</span></div><div class="body" style="margin-top:15px">Preferred store: Target</div><div class="small" style="margin-top:6px">Stock at home: 0</div><div class="actions"><span>Bought · add to stock</span><span style="color:#c25d54">Remove</span></div></div>
+      <div class="card shopping-card"><div class="row"><div class="thumb">LB</div><div class="grow"><div class="title">Kitchen LED Bulbs</div><div class="body">A19 · Warm white</div></div><span class="pill">TO BUY: 4</span></div><div class="body" style="margin-top:15px">Preferred store: Lowe's</div><div class="small" style="margin-top:6px">Stock at home: 2</div><div class="actions"><span>Bought · add to stock</span><span style="color:#c25d54">Remove</span></div></div>
+      <div class="fab">Add to list</div>
+      <div class="bottom-fade"></div>
+    </main>
+    <div class="tabs">
+      <div class="tab"><img src="../comsuable/comsuable/Assets.xcassets/TabHome.imageset/TabHome.svg">Home</div>
+      <div class="tab"><img src="../comsuable/comsuable/Assets.xcassets/TabItems.imageset/TabItems.svg">Items</div>
+      <div class="tab"><img src="../comsuable/comsuable/Assets.xcassets/TabSchedule.imageset/TabSchedule.svg">Schedule</div>
+      <div class="tab active"><img src="../comsuable/comsuable/Assets.xcassets/TabShoppingSelected.imageset/TabShoppingSelected.svg">Shopping</div>
+      <div class="tab"><img src="../comsuable/comsuable/Assets.xcassets/TabSettings.imageset/TabSettings.svg">Settings</div>
+    </div>
+  </div></div>
+</section>
+
+<script>
+  const id = new URLSearchParams(location.search).get('screen') || 'home';
+  (document.getElementById(id) || document.getElementById('home')).classList.add('active');
+</script>
+</body>
+</html>

@@ -181,6 +181,11 @@
 				TargetAttributes = {
 					A056F85C305A7D5700DBC6C3 = {
 						CreatedOnToolsVersion = 26.3;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+						};
 					};
 					A056F869305A7D5900DBC6C3 = {
 						CreatedOnToolsVersion = 26.3;
@@ -409,7 +414,7 @@
 				DEVELOPMENT_TEAM = R72V2RG2KJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Home Passport";
+				INFOPLIST_KEY_CFBundleDisplayName = HomeParts;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Scan a replacement label to suggest its brand, model, size, and category.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -444,7 +449,7 @@
 				DEVELOPMENT_TEAM = R72V2RG2KJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Home Passport";
+				INFOPLIST_KEY_CFBundleDisplayName = HomeParts;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Scan a replacement label to suggest its brand, model, size, and category.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

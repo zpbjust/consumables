@@ -1,4 +1,4 @@
-# Home Passport 完整手工测试 Case
+# HomeParts 完整手工测试 Case
 
 这份文档按“第一次接触 App 的测试者”来写。请按顺序测试，后面的 Case 会使用前面创建的数据。
 
@@ -440,7 +440,7 @@
 操作：
 
 1. 打开 Settings。
-2. 依次进入 Homes & rooms、Notifications、Backup, restore & export、How Home Passport works、Privacy、About。
+2. 依次进入 Homes & rooms、Notifications、Backup, restore & export、How HomeParts works、Privacy、About。
 3. 返回 Settings。
 
 预期：

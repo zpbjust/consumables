@@ -38,7 +38,7 @@ private struct WelcomeView: View {
                         .frame(maxHeight: 190)
                         .frame(maxWidth: .infinity)
                         .accessibilityHidden(true)
-                    Text("Home Passport")
+                    Text("HomeParts")
                         .font(.system(size: 32, weight: .bold, design: .rounded))
                         .foregroundStyle(PassportTheme.ink)
                     Text("The right replacement, right when you need it.")
@@ -111,6 +111,7 @@ private struct HomeView: View {
     @EnvironmentObject private var store: PassportStore
     @State private var showingAdd = false
     @State private var selectedItemDetail: ItemDetailRoute?
+    @State private var selectedHome: HomeDashboardPresentation.HomeSummary?
 
     var body: some View {
         let timeline = ScheduleTimeline(items: store.items, comingUpDays: 14)
@@ -124,7 +125,7 @@ private struct HomeView: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
-                    PassportPageTitle(title: "Home Passport")
+                    PassportPageTitle(title: "HomeParts")
 
                     if store.items.isEmpty { emptyHome }
                     else { attentionCard(items: attention) }
@@ -137,7 +138,7 @@ private struct HomeView: View {
             }
             .background(PassportTheme.canvas)
             .scrollDismissesKeyboard(.interactively)
-            .passportCollapsingTitle("Home Passport")
+            .passportCollapsingTitle("HomeParts")
             .safeAreaInset(edge: .bottom) {
                 if !store.items.isEmpty {
                     HStack {
@@ -151,6 +152,9 @@ private struct HomeView: View {
             .fullScreenCover(isPresented: $showingAdd) { ItemEditorView() }
             .fullScreenCover(item: $selectedItemDetail) { route in
                 ItemDetailScreen(itemID: route.id)
+            }
+            .fullScreenCover(item: $selectedHome) { summary in
+                HomeDashboardView(homeID: summary.id)
             }
         }
     }
@@ -168,7 +172,7 @@ private struct HomeView: View {
                 Text("Start with one thing you replace")
                     .font(.title2.weight(.bold))
                     .foregroundStyle(PassportTheme.ink)
-                Text("Scan an air filter, water filter, bulb, or battery label. Home Passport will keep the exact model, location, and next replacement date together.")
+                Text("Scan an air filter, water filter, bulb, or battery label. HomeParts will keep the exact model, location, and next replacement date together.")
                     .multilineTextAlignment(.center)
                     .foregroundStyle(PassportTheme.muted)
             }
@@ -250,8 +254,8 @@ private struct HomeView: View {
             }
             VStack(spacing: 12) {
                 ForEach(summaries) { summary in
-                    NavigationLink {
-                        HomeDashboardView(homeID: summary.id)
+                    Button {
+                        selectedHome = summary
                     } label: {
                         HomeOverviewCard(summary: summary)
                     }
@@ -322,6 +326,7 @@ private enum HomeDashboardSection: String, CaseIterable, Identifiable {
 
 private struct HomeDashboardView: View {
     @EnvironmentObject private var store: PassportStore
+    @Environment(\.dismiss) private var dismiss
     let homeID: UUID
     @State private var section: HomeDashboardSection = .rooms
     @State private var selectedItemDetail: ItemDetailRoute?
@@ -339,31 +344,38 @@ private struct HomeDashboardView: View {
             )
         } ?? []
 
-        ScrollView {
-            VStack(alignment: .leading, spacing: 18) {
-                homeHeader(home: home, items: items, rooms: rooms, attentionIDs: attentionIDs)
+        NavigationStack {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 18) {
+                    homeHeader(home: home, items: items, rooms: rooms, attentionIDs: attentionIDs)
 
-                Picker("Home section", selection: $section) {
-                    ForEach(HomeDashboardSection.allCases) { value in
-                        Text(value.rawValue).tag(value)
+                    Picker("Home section", selection: $section) {
+                        ForEach(HomeDashboardSection.allCases) { value in
+                            Text(value.rawValue).tag(value)
+                        }
                     }
-                }
-                .pickerStyle(.segmented)
+                    .pickerStyle(.segmented)
 
-                if section == .rooms { roomList(rooms: rooms) }
-                else { itemList(items: items) }
+                    if section == .rooms { roomList(rooms: rooms) }
+                    else { itemList(items: items) }
+                }
+                .padding(20)
+                .padding(.bottom, 24)
+                .passportContentWidth()
             }
-            .padding(20)
-            .padding(.bottom, 24)
-            .passportContentWidth()
+            .background(PassportTheme.canvas)
+            .navigationTitle(home?.name ?? "Home")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("Close") { dismiss() }
+                }
+            }
+            .fullScreenCover(item: $selectedItemDetail) { route in
+                ItemDetailScreen(itemID: route.id)
+            }
         }
-        .background(PassportTheme.canvas)
-        .navigationTitle(home?.name ?? "Home")
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar(.visible, for: .navigationBar)
-        .fullScreenCover(item: $selectedItemDetail) { route in
-            ItemDetailScreen(itemID: route.id)
-        }
+        .tint(PassportTheme.teal)
     }
 
     private func homeHeader(

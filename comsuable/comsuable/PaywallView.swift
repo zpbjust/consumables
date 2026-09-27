@@ -8,8 +8,8 @@ enum PaywallReason {
     var subtitle: String {
         switch self {
         case .settings: "Keep every home detail ready when you need it."
-        case .itemLimit: "You've filled your free passport. Unlock unlimited items."
-        case .homeLimit: "Keep a separate passport for every place you care for."
+        case .itemLimit: "Your free collection is full. Unlock unlimited saved items."
+        case .homeLimit: "Keep a separate list for every home you care for."
         }
     }
 }
@@ -20,24 +20,29 @@ struct PaywallView: View {
     @EnvironmentObject private var purchaseManager: PurchaseManager
 
     let reason: PaywallReason
-    @State private var selectedOptionID: String?
 
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(spacing: 20) {
+                VStack(spacing: 22) {
                     Image("ProPassportHero")
                         .renderingMode(.original)
                         .resizable()
                         .scaledToFit()
+                        .frame(maxWidth: 360)
                         .frame(maxWidth: .infinity)
                         .accessibilityHidden(true)
 
-                    VStack(alignment: .leading, spacing: 7) {
-                        Text("Home Passport Pro")
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("ONE-TIME PURCHASE")
+                            .font(.caption2.weight(.bold))
+                            .tracking(1)
+                            .foregroundStyle(PassportTheme.teal)
+                        Text("HomeParts Pro")
                             .font(.system(size: 28, weight: .bold, design: .rounded))
                             .foregroundStyle(PassportTheme.ink)
                         Text(reason.subtitle)
+                            .font(.body)
                             .foregroundStyle(PassportTheme.muted)
                             .fixedSize(horizontal: false, vertical: true)
                     }
@@ -45,42 +50,50 @@ struct PaywallView: View {
 
                     PassportCard {
                         VStack(spacing: 0) {
-                            benefit("Unlimited saved items", "Keep every filter, bulb, battery, and appliance part.")
-                            Divider().padding(.leading, 24)
-                            benefit("Multiple homes", "Organize a primary home, rental, cabin, or family property.")
-                            Divider().padding(.leading, 24)
-                            benefit("One-time unlock", "Pay once and keep Pro—there is no recurring subscription.")
+                            benefit(
+                                "Unlimited saved items",
+                                "Keep every filter, bulb, battery, and appliance part."
+                            )
+                            Divider().padding(.leading, 40)
+                            benefit(
+                                "Multiple homes",
+                                "Organize your home, rental, cabin, or a family property."
+                            )
+                            Divider().padding(.leading, 40)
+                            benefit(
+                                "Permanent Pro access",
+                                "Buy once and use Pro without a recurring subscription."
+                            )
                         }
                     }
 
-                    plans
-                    purchaseButton
+                    productCard
                     restoreAndLegal
                 }
                 .padding(.horizontal, 20)
-                .padding(.bottom, 28)
-                .passportContentWidth(680)
+                .padding(.top, 12)
+                .padding(.bottom, 116)
+                .passportContentWidth(560)
             }
             .background(PassportTheme.canvas.ignoresSafeArea())
             .safeAreaInset(edge: .top, spacing: 0) {
                 HStack {
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text("Upgrade")
-                            .font(.headline)
-                            .foregroundStyle(PassportTheme.ink)
-                        Text(purchaseManager.isPro ? "Pro is active" : "Lifetime access")
-                            .font(.caption)
-                            .foregroundStyle(PassportTheme.muted)
-                    }
                     Spacer()
-                    Button("Close") { dismiss() }
-                        .font(.subheadline.weight(.semibold))
-                        .foregroundStyle(PassportTheme.teal)
+                    Button { dismiss() } label: {
+                        Image(systemName: "xmark")
+                            .font(.subheadline.weight(.bold))
+                            .foregroundStyle(PassportTheme.ink)
+                            .frame(width: 36, height: 36)
+                            .background(.white.opacity(0.92), in: Circle())
+                            .overlay(Circle().stroke(PassportTheme.line, lineWidth: 1))
+                    }
+                    .accessibilityLabel("Close")
                 }
                 .padding(.horizontal, 20)
-                .padding(.vertical, 12)
-                .background(.ultraThinMaterial)
-                .overlay(alignment: .bottom) { PassportTheme.line.frame(height: 1) }
+                .padding(.vertical, 8)
+            }
+            .safeAreaInset(edge: .bottom, spacing: 0) {
+                purchaseFooter
             }
             .task {
                 await purchaseManager.preparePaywall()
@@ -101,29 +114,36 @@ struct PaywallView: View {
 
     private func benefit(_ title: String, _ detail: String) -> some View {
         HStack(alignment: .top, spacing: 12) {
-            RoundedRectangle(cornerRadius: 3)
-                .fill(PassportTheme.teal)
-                .frame(width: 5, height: 34)
+            Image(systemName: "checkmark.circle.fill")
+                .font(.title3)
+                .foregroundStyle(PassportTheme.teal)
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 3) {
-                Text(title).font(.subheadline.weight(.semibold)).foregroundStyle(PassportTheme.ink)
-                Text(detail).font(.caption).foregroundStyle(PassportTheme.muted)
+                Text(title)
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundStyle(PassportTheme.ink)
+                Text(detail)
+                    .font(.caption)
+                    .foregroundStyle(PassportTheme.muted)
                     .fixedSize(horizontal: false, vertical: true)
             }
             Spacer(minLength: 0)
         }
-        .padding(.vertical, 12)
+        .padding(.vertical, 13)
     }
 
     @ViewBuilder
-    private var plans: some View {
+    private var productCard: some View {
         switch purchaseManager.availability {
         case .notConfigured:
             PassportCard {
-                VStack(alignment: .leading, spacing: 7) {
-                    Text("Pro is almost ready").font(.headline).foregroundStyle(PassportTheme.ink)
-                    Text("The one-time unlock will appear here after the App Store and RevenueCat product is connected.")
-                        .font(.subheadline).foregroundStyle(PassportTheme.muted)
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Lifetime Unlock")
+                        .font(.headline)
+                        .foregroundStyle(PassportTheme.ink)
+                    Text("Purchases are not available yet.")
+                        .font(.subheadline)
+                        .foregroundStyle(PassportTheme.muted)
                         .fixedSize(horizontal: false, vertical: true)
                 }
             }
@@ -131,88 +151,110 @@ struct PaywallView: View {
             PassportCard {
                 HStack(spacing: 12) {
                     ProgressView().tint(PassportTheme.teal)
-                    Text("Loading the unlock…").foregroundStyle(PassportTheme.muted)
+                    VStack(alignment: .leading, spacing: 3) {
+                        Text("Lifetime Unlock")
+                            .font(.headline)
+                            .foregroundStyle(PassportTheme.ink)
+                        Text("Loading App Store price…")
+                            .font(.caption)
+                            .foregroundStyle(PassportTheme.muted)
+                    }
                 }
             }
         case .unavailable(let message):
             PassportCard {
-                VStack(alignment: .leading, spacing: 9) {
-                    Text("The unlock is unavailable").font(.headline).foregroundStyle(PassportTheme.ink)
-                    Text(message).font(.subheadline).foregroundStyle(PassportTheme.muted)
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("The unlock is unavailable")
+                        .font(.headline)
+                        .foregroundStyle(PassportTheme.ink)
+                    Text(message)
+                        .font(.subheadline)
+                        .foregroundStyle(PassportTheme.muted)
                     Button("Try again") { Task { await purchaseManager.loadOfferings() } }
-                        .font(.subheadline.weight(.semibold)).foregroundStyle(PassportTheme.teal)
+                        .font(.subheadline.weight(.semibold))
+                        .foregroundStyle(PassportTheme.teal)
                 }
             }
         case .ready:
-            VStack(spacing: 10) {
-                ForEach(purchaseManager.options) { option in
-                    optionCard(option)
-                }
+            if let option = purchaseManager.options.first {
+                lifetimeCard(option)
             }
         }
     }
 
-    private func optionCard(_ option: PurchaseOption) -> some View {
-        let selected = option.id == selectedOption?.id
-        return Button {
-            selectedOptionID = option.id
-        } label: {
-            HStack(spacing: 14) {
-                Circle()
-                    .stroke(selected ? PassportTheme.teal : PassportTheme.line, lineWidth: 2)
-                    .background {
-                        if selected { Circle().fill(PassportTheme.teal).padding(5) }
-                    }
-                    .frame(width: 24, height: 24)
+    private func lifetimeCard(_ option: PurchaseOption) -> some View {
+        PassportCard {
+            HStack(spacing: 16) {
+                Image(systemName: "checkmark.seal.fill")
+                    .font(.title2)
+                    .foregroundStyle(PassportTheme.teal)
                     .accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(option.title)
-                        .font(.headline).foregroundStyle(PassportTheme.ink)
-                    Text(option.detail)
-                        .font(.caption).foregroundStyle(PassportTheme.muted).lineLimit(2)
+                    Text("Lifetime Unlock")
+                        .font(.headline)
+                        .foregroundStyle(PassportTheme.ink)
+                    Text("One-time purchase · No subscription")
+                        .font(.caption)
+                        .foregroundStyle(PassportTheme.muted)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
                 Spacer(minLength: 8)
                 Text(option.localizedPrice)
-                    .font(.headline).foregroundStyle(PassportTheme.ink)
-            }
-            .padding(16)
-            .background(.white, in: RoundedRectangle(cornerRadius: 17, style: .continuous))
-            .overlay {
-                RoundedRectangle(cornerRadius: 17)
-                    .stroke(selected ? PassportTheme.teal : PassportTheme.line, lineWidth: selected ? 2 : 1)
+                    .font(.title3.weight(.bold))
+                    .foregroundStyle(PassportTheme.ink)
+                    .multilineTextAlignment(.trailing)
             }
         }
-        .buttonStyle(.plain)
-        .accessibilityLabel("\(option.title), \(option.localizedPrice)")
-        .accessibilityAddTraits(selected ? .isSelected : [])
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(
+            "Lifetime Unlock, \(option.localizedPrice), one-time purchase, no subscription"
+        )
     }
 
     private var selectedOption: PurchaseOption? {
-        purchaseManager.options.first { $0.id == selectedOptionID } ?? purchaseManager.options.first
+        purchaseManager.options.first
     }
 
-    private var purchaseButton: some View {
-        Button {
-            guard let selectedOption else { return }
-            Task {
-                if await purchaseManager.purchase(optionID: selectedOption.id) { dismiss() }
-            }
-        } label: {
-            Group {
-                if purchaseManager.isPurchasing {
-                    ProgressView().tint(.white)
-                } else if purchaseManager.isPro {
-                    Text("Pro is active")
-                } else if let selectedOption {
-                    Text("Unlock forever · \(selectedOption.localizedPrice)")
-                } else {
-                    Text("Unlock Home Passport Pro")
+    private var purchaseFooter: some View {
+        VStack(spacing: 8) {
+            Button {
+                guard let selectedOption else { return }
+                Task {
+                    if await purchaseManager.purchase(optionID: selectedOption.id) {
+                        dismiss()
+                    }
+                }
+            } label: {
+                Group {
+                    if purchaseManager.isPurchasing {
+                        HStack(spacing: 10) {
+                            ProgressView().tint(.white)
+                            Text("Purchasing…")
+                        }
+                    } else if purchaseManager.isPro {
+                        Text("Pro is active")
+                    } else if let selectedOption {
+                        Text("Unlock Pro · \(selectedOption.localizedPrice)")
+                    } else {
+                        Text("Unlock Pro")
+                    }
                 }
             }
+            .buttonStyle(PassportPrimaryButton())
+            .disabled(selectedOption == nil || purchaseManager.isPurchasing || purchaseManager.isPro)
+            .opacity(selectedOption == nil || purchaseManager.isPro ? 0.55 : 1)
+
+            Text("One payment. Permanent access. No recurring charge.")
+                .font(.caption2)
+                .foregroundStyle(PassportTheme.muted)
+                .multilineTextAlignment(.center)
         }
-        .buttonStyle(PassportPrimaryButton())
-        .disabled(selectedOption == nil || purchaseManager.isPurchasing || purchaseManager.isPro)
-        .opacity(selectedOption == nil || purchaseManager.isPro ? 0.55 : 1)
+        .padding(.horizontal, 20)
+        .padding(.top, 12)
+        .padding(.bottom, 8)
+        .frame(maxWidth: .infinity)
+        .background(.ultraThinMaterial)
+        .overlay(alignment: .top) { PassportTheme.line.frame(height: 1) }
     }
 
     private var restoreAndLegal: some View {
@@ -230,7 +272,7 @@ struct PaywallView: View {
             .foregroundStyle(PassportTheme.teal)
             .disabled(purchaseManager.isRestoring || !PurchaseConfiguration.isReady)
 
-            Text("One-time purchase. Payment is charged to your Apple Account after confirmation. You can restore it on devices using the same Apple Account.")
+            Text("Payment is charged to your Apple Account after confirmation. You can restore this purchase on devices using the same Apple Account.")
                 .font(.caption2).foregroundStyle(PassportTheme.muted)
                 .multilineTextAlignment(.center)
                 .fixedSize(horizontal: false, vertical: true)
@@ -245,5 +287,4 @@ struct PaywallView: View {
             .foregroundStyle(PassportTheme.teal)
         }
     }
-
 }
